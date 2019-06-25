@@ -30,4 +30,13 @@
                                            name:vadas,
                                            age:27,
                                            inE:<>,
-                                           outE:<>]]]]]              
+                                           outE:<>]]]]]
+                                                
+[define,varchar255,string<![[op,len][is,lte,255]]>]
+[define,short,integer<!between(-32767,32767)>]
+[map,varchar255<kuppitz>]
+[map,short<42>] 
+
+[put,persons,[name:@string,(age:@int)?]
+               -> [dedup,![get,name]]      => ![]
+               -> [order,[![get,name],gt]] => ![]]        

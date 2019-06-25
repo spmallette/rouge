@@ -65,6 +65,9 @@ module Rouge
         rule %r/\|/, Operator
         rule %r/\$/, Operator
         rule %r/\~/, Operator
+        rule %r/-/, Operator
+        rule %r/\?/, Operator        
+        rule %r/\+/, Operator
         
       end
     end
