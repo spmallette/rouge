@@ -30,6 +30,8 @@ module Rouge
 
       state :root do
         rule %r/\s+/m, Text
+        rule %r/\/\/.*/, Comment::Single
+        
         rule %r/\[/, Punctuation
         rule %r/,/, Punctuation
         rule %r/\]/, Punctuation
@@ -50,7 +52,9 @@ module Rouge
           else
             token Name::Function
           end
-        end              
+        end    
+        
+        rule %r/\./, Name::Function          
         
         rule %r/=>/, Operator
         rule %r/->/, Operator
@@ -62,7 +66,6 @@ module Rouge
         rule %r/\$/, Operator
         rule %r/\~/, Operator
         
-        rule %r/\w*/, Keyword::Constant
       end
     end
   end

@@ -1,3 +1,6 @@
+// **************************************************************************
+// property graph model
+// **************************************************************************
 [model,pg,
   [define,key,string<!neq(id)&!neq(label)>],
   [define,value,@bool|@number|@string],
@@ -14,3 +17,17 @@
             -> [drop,(outV|inV)]        => [error]]
   [define,graph,@vertex*
             -> [dedup,![get,id]]        => ![]]]
+            
+// g.addV('person').property('name','marko').property('age',29).
+//     addE('knows').propery('weight',0.5)
+//       to(addV('person').property('name','vadas').property('age,27'))  
+[db][new]                                                                
+    [add,vertex[label:person,name:marko,age:29,inE:<>,outE:<>]]
+    [add,outE,edge[label:knows,
+                   weight:0.5f,
+                   outV :![_],
+                   inV  :![[db][add,vertex[label:person,
+                                           name:vadas,
+                                           age:27,
+                                           inE:<>,
+                                           outE:<>]]]]]              
