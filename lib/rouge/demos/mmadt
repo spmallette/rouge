@@ -1,0 +1,4 @@
+[model,pg,
+  [define,key,string<!neq(id)&!neq(label)>],
+  [define,value,@bool|@number|@string],
+  [define,property,@key:@value]]

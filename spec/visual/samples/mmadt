@@ -1,0 +1,16 @@
+[model,pg,
+  [define,key,string<!neq(id)&!neq(label)>],
+  [define,value,@bool|@number|@string],
+  [define,property,@key:@value]
+  [define,element,[id:@long,label:@string,@property*]
+            -> [drop,(id|label)]        => [error]
+            -> [put,(id|label),@object] => [error]
+            -> [is,@rel,@element]       => ![[get,id][is,@rel,$_0]]]
+  [define,vertex,element[inE:@edge*,outE:@edge*]
+            -> [add,outE,@edge]         => ![[~,$0][get,inV][add,inE,$0]]
+            -> [drop]                   => ![[~,$_0,$_1][drop][~,$_][drop]]
+  [define,edge,element[outV:@vertex,inV:@vertex]
+            -> [put,(outV|inV),@vertex] => [error]
+            -> [drop,(outV|inV)]        => [error]]
+  [define,graph,@vertex*
+            -> [dedup,![get,id]]        => ![]]]
