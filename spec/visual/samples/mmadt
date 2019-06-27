@@ -39,4 +39,7 @@
 
 [put,persons,[name:@string,(age:@int)?]
                -> [dedup,![get,name]]      => ![]
-               -> [order,[![get,name],gt]] => ![]]        
+               -> [order,[![get,name],gt]] => ![]]
+              
+[42,'josh',42,true]      
+               

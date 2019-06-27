@@ -41,6 +41,7 @@ module Rouge
         rule %r/\}/, Punctuation
         rule %r/</, Punctuation
         rule %r/>/, Punctuation
+        rule %r/'/, Punctuation
            
         rule %r/@\w*/, Keyword::Variable   
                 
