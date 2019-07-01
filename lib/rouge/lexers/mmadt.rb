@@ -12,8 +12,8 @@ module Rouge
 
       def self.opcodes
         @opcodes ||= Set.new %w(
-          map db get new op path start type union
-          filter and coin has hasKey hasValue hasValue or is
+          map at db get new op path start type union
+          filter and branch coin has hasKey hasValue hasValue or is
           barrier dedup order range sample tail
           reduce count fold group map mean media min sum 
           sideEffect add as define drop fit put
