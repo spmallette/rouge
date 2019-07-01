@@ -42,4 +42,11 @@
                -> [order,[![get,name],gt]] => ![]]
               
 [42,'josh',42,true]      
+
+[db][put,txt1,"a text to a friend"]
+    [put,txt2,"another text"]
+    [put,txt3,"call me"]
+[db][get,txt1]
+    [op,split," "]
+    [count]
                
