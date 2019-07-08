@@ -49,4 +49,21 @@
 [db][get,txt1]
     [op,split," "]
     [count]
+    
+[model,mm=>mm,
+  [define,CountStrategy,
+    bc[@inst*~,([count][is,@rel,@int~])~,@inst*~]
+      => bc[$0,[limit,!![op,add,$1,1]],$2,$3]],
+  [define,a^nStrategy,
+    bc[@inst*~,[repeat,@bytecode*~,[loops,eq,@int~]],@inst*~]
+      => bc[$0,!![[start,$1][repeat,[_],[loops,eq,$2],![_]]],$3]],
+  [define,a*1Strategy,
+    bc[@inst*~,[_],@inst*~]
+      => bc[$0,$1]],
+  [define,a+0Strategy,
+    bc[@inst*~,[branch,[#],@bytecode~],@inst*~]
+      => bc[$0,$1,$2]],
+  [define,a*0Strategy,
+    bc[(@inst&not(typeof(sideeffect)))*,[#],@inst*~]
+      => bc[$0]]]    
                

@@ -9,21 +9,26 @@ module Rouge
       tag 'mmadt'
       filenames '*.mmadt'
       mimetypes 'text/mm-adt', 'application/mm-adt'
-
+      
       def self.opcodes
         @opcodes ||= Set.new %w(
-          map at db get new op path start type union
-          filter and branch coin has hasKey hasValue hasValue or is
+          db start
+          drop
+          map get loops obj path select type 
+          flatmap unfold
+          filter and coin has hasKey hasValue hasValue is or 
           barrier dedup order range sample tail
-          reduce count fold group map mean media min sum 
-          sideEffect add as define drop fit put
+          reduce count fold group limit max mean median min sum 
+          sideEffect as fit put
+          branch at choose coalesce ifelse repeat union
+          cost migrate define deref explain model new op ref
         )
       end
 
       def self.operators
         @operators ||= Set.new %w(
           between eq gt gte lt lte neq regex typeof within 
-          plus div mod mult pow sub
+          add div mod mult pow sub
           len split
         )
       end
@@ -70,6 +75,10 @@ module Rouge
         rule %r/-/, Operator
         rule %r/\?/, Operator        
         rule %r/\+/, Operator
+        rule %r/\^/, Operator
+        
+        rule %r/#/, Keyword::Reserved
+        rule %r/_/, Keyword::Reserved
         
       end
     end
