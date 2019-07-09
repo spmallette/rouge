@@ -21,7 +21,7 @@ module Rouge
           reduce count fold group limit max mean median min sum 
           sideEffect as fit put
           branch at choose coalesce ifelse repeat union
-          cost migrate define deref explain model new op ref
+          cost define error deref explain migrate model new op ref
         )
       end
 
@@ -48,6 +48,9 @@ module Rouge
         rule %r/>/, Punctuation
         rule %r/'/, Punctuation
         rule %r/"/, Punctuation
+        
+        rule %r/#/, Keyword::Reserved
+        rule %r/_/, Keyword::Reserved 
            
         rule %r/@\w*/, Keyword::Variable   
                 
@@ -59,7 +62,7 @@ module Rouge
           else
             token Name::Function
           end
-        end    
+        end 
         
         rule %r/\./, Name::Function          
         
@@ -76,9 +79,6 @@ module Rouge
         rule %r/\?/, Operator        
         rule %r/\+/, Operator
         rule %r/\^/, Operator
-        
-        rule %r/#/, Keyword::Reserved
-        rule %r/_/, Keyword::Reserved
         
       end
     end
